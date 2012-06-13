@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns="*"
+			   creationComplete="onCreationComplete()">
+
+	<!-- 初期化スクリプト -->
+	<fx:Script source="init.as"/>
+	
+	<fx:Declarations>
+		<!-- 非ビジュアルエレメント (サービス、値オブジェクトなど) をここに配置 -->
+		<!-- calculator のコントローラー -->
+		<CalculatorHandlers id="calcHandlers" calcView="{this}"/>
+		
+		<!-- メニュー -->
+		<fx:XMLList id="listMenu">
+			<menuitem label="編集">
+				<menuitem id="menuCopy" label="コピー"/>
+			</menuitem>
+		</fx:XMLList>
+	</fx:Declarations>
+		
+	<!-- calculator のビュー -->
+	<mx:Panel title="電卓">	
+		<mx:MenuBar width="184" dataProvider="{listMenu}" itemClick="onClickMenuItem(event)"
+					labelField="@label">
+		</mx:MenuBar>
+		
+		<!-- calculator のディスプレイ -->
+		<mx:Label id="calcDisplay" width="177" height="27" fontFamily="Arial" fontSize="20" text="0"
+				  textAlign="right"/>
+		<!-- calculator のコントロール群 -->
+		<mx:Grid>
+			<mx:GridRow>
+				<mx:GridItem>
+					<mx:Button width="40" label="←" click="calcHandlers.delNumber()"/>
+				</mx:GridItem>
+				<mx:GridItem>
+					<mx:Button width="40" label="C/E" click="calcHandlers.clearEntry()"/>
+				</mx:GridItem>
+				<mx:GridItem>
+					<mx:Button width="40" label="C" click="calcHandlers.clearAll()"/>
+				</mx:GridItem>
+				<mx:GridItem>
+					<mx:Button width="40" label="+" click="calcHandlers.setOperation('+')"/>
+				</mx:GridItem>
+			</mx:GridRow>
+			<mx:GridRow>
+				<mx:GridItem>
+					<mx:Button width="40" label="7" click="calcHandlers.addNumber('7')"/>
+				</mx:GridItem>
+				<mx:GridItem>
+					<mx:Button width="40" label="8" click="calcHandlers.addNumber('8')"/>
+				</mx:GridItem>
+				<mx:GridItem>
+					<mx:Button width="40" label="9" click="calcHandlers.addNumber('9')"/>
+				</mx:GridItem>
+				<mx:GridItem>
+					<mx:Button width="40" label="/" click="calcHandlers.setOperation('/')"/>
+				</mx:GridItem>
+			</mx:GridRow>
+			<mx:GridRow>
+				<mx:GridItem>
+					<mx:Button width="40" label="4" click="calcHandlers.addNumber('4')"/>
+				</mx:GridItem>
+				<mx:GridItem>
+					<mx:Button width="40" label="5" click="calcHandlers.addNumber('5')"/>
+				</mx:GridItem>
+				<mx:GridItem>
+					<mx:Button width="40" label="6" click="calcHandlers.addNumber('6')"/>
+				</mx:GridItem>
+				<mx:GridItem>
+					<mx:Button width="40" label="*" click="calcHandlers.setOperation('*')"/>
+				</mx:GridItem>
+			</mx:GridRow>
+			<mx:GridRow>
+				<mx:GridItem>
+					<mx:Button width="40" label="1" click="calcHandlers.addNumber('1')"/>
+				</mx:GridItem>
+				<mx:GridItem>
+					<mx:Button width="40" label="2" click="calcHandlers.addNumber('2')"/>
+				</mx:GridItem>
+				<mx:GridItem>
+					<mx:Button width="40" label="3" click="calcHandlers.addNumber('3')"/>
+				</mx:GridItem>
+				<mx:GridItem>
+					<mx:Button width="40" label="-" click="calcHandlers.setOperation('-')"/>
+				</mx:GridItem>
+			</mx:GridRow>
+			<mx:GridRow>
+				<mx:GridItem>
+					<mx:Button width="40" label="0" click="calcHandlers.addNumber('0')"/>
+				</mx:GridItem>
+				<mx:GridItem>
+					<mx:Button width="40" label="." click="calcHandlers.addNumber('.')"/>
+				</mx:GridItem>
+				<mx:GridItem colSpan="2">
+					<mx:Button id="operation" width="80" label="=" click="calcHandlers.doOperation()"/>
+				</mx:GridItem>
+			</mx:GridRow>
+		</mx:Grid>
+	</mx:Panel>
+</s:Application>
