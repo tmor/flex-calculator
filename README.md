@@ -9,7 +9,7 @@
 
 ## 実行
 
-* Flash PlayerをインストールしたPCで、Main.html を開いて下さい
+* Flash PlayerをインストールしたPCで、bin-release/Main.html を開いて下さい
 
 ## 開発環境
 
